@@ -13,15 +13,14 @@
  */
 package com.qq.weixin.mp.aes;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Random;
+import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.commons.codec.binary.Base64;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * 提供接收和推送给公众平台消息的加解密接口(UTF8编码的字符串).
@@ -277,7 +276,7 @@ public class WXBizMsgCrypt {
 	public String VerifyURL(String msgSignature, String timeStamp, String nonce, String echoStr)
 			throws AesException {
 		String signature = SHA1.getSHA1(token, timeStamp, nonce, echoStr);
-
+		//System.out.println("msgSignature:"+msgSignature+"   signature:"+signature+"  timeStamp:"+timeStamp+"   nonce:"+nonce+"   echoStr:"+echoStr+"   token:"+token);
 		if (!signature.equals(msgSignature)) {
 			throw new AesException(AesException.ValidateSignatureError);
 		}
