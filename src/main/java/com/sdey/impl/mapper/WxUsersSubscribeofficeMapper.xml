@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxUsersSubscribeofficeMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxUsersSubscribeoffice">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="userid" jdbcType="INTEGER" property="userid" />
+		<result column="subhospitalid" jdbcType="INTEGER" property="subhospitalid" />
+		<result column="subofficeid" jdbcType="INTEGER" property="subofficeid" />
+		<result column="shoucang" jdbcType="INTEGER" property="shoucang" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, userid, subhospitalid, subofficeid, shoucang
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_users_subscribeoffice
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_users_subscribeoffice
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxUsersSubscribeoffice">
+		<!-- @mbg.generated -->
+		insert into wx_users_subscribeoffice (id, userid, subhospitalid,
+		subofficeid, shoucang)
+		values (#{id,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{subhospitalid,jdbcType=INTEGER},
+		#{subofficeid,jdbcType=INTEGER}, #{shoucang,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxUsersSubscribeoffice">
+		<!-- @mbg.generated -->
+		insert into wx_users_subscribeoffice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="subhospitalid != null">
+				subhospitalid,
+			</if>
+			<if test="subofficeid != null">
+				subofficeid,
+			</if>
+			<if test="shoucang != null">
+				shoucang,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="subhospitalid != null">
+				#{subhospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="subofficeid != null">
+				#{subofficeid,jdbcType=INTEGER},
+			</if>
+			<if test="shoucang != null">
+				#{shoucang,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxUsersSubscribeoffice">
+		<!-- @mbg.generated -->
+		update wx_users_subscribeoffice
+		<set>
+			<if test="userid != null">
+				userid = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="subhospitalid != null">
+				subhospitalid = #{subhospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="subofficeid != null">
+				subofficeid = #{subofficeid,jdbcType=INTEGER},
+			</if>
+			<if test="shoucang != null">
+				shoucang = #{shoucang,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxUsersSubscribeoffice">
+		<!-- @mbg.generated -->
+		update wx_users_subscribeoffice
+		set userid =
+		#{userid,jdbcType=INTEGER},
+		subhospitalid =
+		#{subhospitalid,jdbcType=INTEGER},
+		subofficeid =
+		#{subofficeid,jdbcType=INTEGER},
+		shoucang =
+		#{shoucang,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByUserIdAndhospitalID_officeID" parameterType="com.sdey.api.vo.Dao_Search_SubParam"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_users_subscribeoffice where userid =
+		#{wxUserID,jdbcType=INTEGER} and
+		subhospitalid =
+		#{hospitalID,jdbcType=INTEGER} and
+		subofficeid =
+		#{officeID,jdbcType=INTEGER}
+	</select>
+	<update id="cancelYishouCang" parameterType="java.lang.Integer">
+		update
+		wx_users_subscribeoffice set shoucang=0 where userid =
+		#{userid,jdbcType=INTEGER}
+	</update>
+	<update id="updateSubForShouCang" parameterType="com.sdey.api.po.WxUsersSubscribeoffice">
+		update
+		wx_users_subscribeoffice set shoucang=1 where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getGuanZhuID" resultType="com.sdey.api.vo.Wxpage_ksjs_gz">
+		SELECT
+		wxusersub.subhospitalid as hospitalid,wxusersub.subofficeid as
+		officeid FROM sdeyweixin.wx_users wxuser inner join
+		sdeyweixin.wx_users_subscribeoffice wxusersub on
+		wxuser.id=wxusersub.userid
+		where
+		wxuser.openid=#{openid,jdbcType=VARCHAR} and wxusersub.shoucang=1
+	</select>
+
+
+
+	<!-- 获取关注科室所在医院的id -->
+	<select id="getShouchangKSID" resultType="java.lang.Integer">
+		SELECT
+		wxusersub.subhospitalid as subhosid FROM sdeyweixin.wx_users
+		wxuser
+		inner join
+		sdeyweixin.wx_users_subscribeoffice wxusersub on
+		wxuser.id=wxusersub.userid
+		where
+		wxuser.openid=#{openid,jdbcType=VARCHAR} and wxusersub.shoucang=1
+	</select>
+</mapper>

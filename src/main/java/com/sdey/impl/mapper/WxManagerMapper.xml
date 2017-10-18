@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxManagerMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxManager">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="psd" jdbcType="VARCHAR" property="psd" />
+		<result column="hospitalid" jdbcType="INTEGER" property="hospitalid" />
+		<result column="quanxian" jdbcType="INTEGER" property="quanxian" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="ksofficeid" jdbcType="INTEGER" property="ksofficeid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, name, username, psd, hospitalid, quanxian, createtime, ksofficeid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_manager
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_manager
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByHospitalID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_manager
+		where hospitalid = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByKSID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_manager
+		where ksofficeid = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxManager">
+		<!-- @mbg.generated -->
+		insert into wx_manager (id, name, username,
+		psd, hospitalid, quanxian,
+		createtime, ksofficeid)
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{psd,jdbcType=VARCHAR}, #{hospitalid,jdbcType=INTEGER},
+		#{quanxian,jdbcType=INTEGER},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{ksofficeid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxManager">
+		<!-- @mbg.generated -->
+		insert into wx_manager
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="psd != null">
+				psd,
+			</if>
+			<if test="hospitalid != null">
+				hospitalid,
+			</if>
+			<if test="quanxian != null">
+				quanxian,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="ksofficeid != null">
+				ksofficeid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="psd != null">
+				#{psd,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="quanxian != null">
+				#{quanxian,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ksofficeid != null">
+				#{ksofficeid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxManager">
+		<!-- @mbg.generated -->
+		update wx_manager
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="psd != null">
+				psd = #{psd,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				hospitalid = #{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="quanxian != null">
+				quanxian = #{quanxian,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ksofficeid != null">
+				ksofficeid = #{ksofficeid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxManager">
+		<!-- @mbg.generated -->
+		update wx_manager
+		set name = #{name,jdbcType=VARCHAR},
+		username =
+		#{username,jdbcType=VARCHAR},
+		psd = #{psd,jdbcType=VARCHAR},
+		hospitalid
+		= #{hospitalid,jdbcType=INTEGER},
+		quanxian =
+		#{quanxian,jdbcType=INTEGER},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		ksofficeid =
+		#{ksofficeid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByHospitalId" parameterType="int" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_manager
+		where hospitalid = #{hospitalid,jdbcType=INTEGER} and
+		quanxian=2
+	</select>
+	<select id="getManagerUserForLogin" parameterType="com.sdey.api.po.WxManager"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_manager
+		where username=#{username,jdbcType=VARCHAR} and psd =
+		#{psd,jdbcType=VARCHAR}
+	</select>
+	<select id="getKeshiManagerList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_manager where
+		ksofficeid= #{keshiID,jdbcType=INTEGER} order by
+		createtime desc
+	</select>
+</mapper>

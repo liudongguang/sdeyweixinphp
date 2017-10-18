@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxHospitalMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxHospital">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="dj" jdbcType="VARCHAR" property="dj" />
+		<result column="tel" jdbcType="VARCHAR" property="tel" />
+		<result column="webaddr" jdbcType="VARCHAR" property="webaddr" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="jtlx" jdbcType="VARCHAR" property="jtlx" />
+		<result column="jgjj" jdbcType="VARCHAR" property="jgjj" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="czyid" jdbcType="INTEGER" property="czyid" />
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+		<result column="erweima" jdbcType="VARCHAR" property="erweima" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, name, dj, tel, webaddr, city, address, jtlx, jgjj, createtime,
+		czyid, pinyin,
+		erweima
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_hospital
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_hospital
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxHospital">
+		<!-- @mbg.generated -->
+		insert into wx_hospital (id, name, dj,
+		tel, webaddr, city,
+		address,
+		jtlx, jgjj,
+		createtime, czyid, pinyin,
+		erweima)
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{dj,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{webaddr,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{jtlx,jdbcType=VARCHAR},
+		#{jgjj,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{czyid,jdbcType=INTEGER}, #{pinyin,jdbcType=VARCHAR},
+		#{erweima,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxHospital">
+		<!-- @mbg.generated -->
+		insert into wx_hospital
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="dj != null">
+				dj,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="webaddr != null">
+				webaddr,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="jtlx != null">
+				jtlx,
+			</if>
+			<if test="jgjj != null">
+				jgjj,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="czyid != null">
+				czyid,
+			</if>
+			<if test="pinyin != null">
+				pinyin,
+			</if>
+			<if test="erweima != null">
+				erweima,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="dj != null">
+				#{dj,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="webaddr != null">
+				#{webaddr,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="jtlx != null">
+				#{jtlx,jdbcType=VARCHAR},
+			</if>
+			<if test="jgjj != null">
+				#{jgjj,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				#{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				#{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="erweima != null">
+				#{erweima,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxHospital">
+		<!-- @mbg.generated -->
+		update wx_hospital
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="dj != null">
+				dj = #{dj,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="webaddr != null">
+				webaddr = #{webaddr,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="jtlx != null">
+				jtlx = #{jtlx,jdbcType=VARCHAR},
+			</if>
+			<if test="jgjj != null">
+				jgjj = #{jgjj,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				czyid = #{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				pinyin = #{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="erweima != null">
+				erweima = #{erweima,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxHospital">
+		<!-- @mbg.generated -->
+		update wx_hospital
+		set name = #{name,jdbcType=VARCHAR},
+		dj =
+		#{dj,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		webaddr =
+		#{webaddr,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		jtlx = #{jtlx,jdbcType=VARCHAR},
+		jgjj =
+		#{jgjj,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		czyid = #{czyid,jdbcType=INTEGER},
+		pinyin = #{pinyin,jdbcType=VARCHAR},
+		erweima =
+		#{erweima,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="addSimpleHospital" keyProperty="id"
+		parameterType="com.sdey.api.po.WxHospital" useGeneratedKeys="true">
+		insert
+		into wx_hospital
+		(name,createtime)
+		values
+		(#{name,jdbcType=VARCHAR},#{createtime,jdbcType=TIMESTAMP})
+	</insert>
+	<select id="getHospitalList" resultMap="BaseResultMap">
+		select
+		id,name,createtime
+		from
+		wx_hospital order by createtime desc
+	</select>
+	<select id="getHospitalEWM" resultType="java.lang.String">
+		select erweima from
+		wx_hospital where id= #{id,jdbcType=INTEGER}
+	</select>
+	<update id="saveHospitalEWM">
+		update wx_hospital set erweima = #{getEWMByTicketUrl,jdbcType=VARCHAR}
+		where id= #{hospitalid,jdbcType=INTEGER}
+	</update>
+</mapper>

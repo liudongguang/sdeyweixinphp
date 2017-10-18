@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxNewsMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxNews">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="hospitalid" jdbcType="INTEGER" property="hospitalid" />
+		<result column="ksid" jdbcType="INTEGER" property="ksid" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="czyid" jdbcType="INTEGER" property="czyid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, title, content, hospitalid, ksid, createtime, czyid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_news
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_news
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByHospitalID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_news
+		where hospitalid = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByKSID" parameterType="java.lang.Integer">
+		delete from wx_news
+		where ksid = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxNews">
+		<!-- @mbg.generated -->
+		insert into wx_news (id, title, content,
+		hospitalid, ksid, createtime,
+		czyid)
+		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{hospitalid,jdbcType=INTEGER},
+		#{ksid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		#{czyid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxNews">
+		<!-- @mbg.generated -->
+		insert into wx_news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="hospitalid != null">
+				hospitalid,
+			</if>
+			<if test="ksid != null">
+				ksid,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="czyid != null">
+				czyid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="ksid != null">
+				#{ksid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				#{czyid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxNews">
+		<!-- @mbg.generated -->
+		update wx_news
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				hospitalid = #{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="ksid != null">
+				ksid = #{ksid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				czyid = #{czyid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxNews">
+		<!-- @mbg.generated -->
+		update wx_news
+		set title = #{title,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=VARCHAR},
+		hospitalid =
+		#{hospitalid,jdbcType=INTEGER},
+		ksid = #{ksid,jdbcType=INTEGER},
+		createtime = #{createtime,jdbcType=TIMESTAMP},
+		czyid =
+		#{czyid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getKsNewsList" resultMap="BaseResultMap"
+		parameterType="com.sdey.api.po.WxManager">
+		select id, title,createtime from wx_news where ksid =
+		#{ksofficeid,jdbcType=INTEGER} and hospitalid =
+		#{hospitalid,jdbcType=INTEGER} order by createtime desc
+	</select>
+	<select id="getKsNewsListByKSID" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, title,createtime from wx_news where ksid =
+		#{ksofficeid,jdbcType=INTEGER}  order by createtime desc
+	</select>
+	<resultMap type="com.sdey.api.vo.KeShi_HospitalManager" id="newsAndKsMap">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="ksname" jdbcType="VARCHAR" property="ksname" />
+	</resultMap>
+	<select id="getKsNewsListForHospitalManager" resultMap="newsAndKsMap"
+		parameterType="com.sdey.api.po.WxManager">
+		select news.id, news.title,news.createtime,ks.name as
+		ksname from sdeyweixin.wx_news
+		news,sdeyweixin.wx_keshi ks where
+		news.ksid=ks.id order by news.createtime desc
+	</select>
+	<select id="getNewsListByksid" resultMap="BaseResultMap">
+		select id,title,createtime from wx_news where ksid =
+		#{ksofficeid,jdbcType=INTEGER}
+	</select>
+</mapper>

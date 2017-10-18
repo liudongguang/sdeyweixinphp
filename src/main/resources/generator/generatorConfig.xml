@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="generator/initGenerator.properties" />
+	<classPathEntry location="${driverPath}" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+
+		<commentGenerator type="org.mybatis.generator.internal.LDGCommentGenerator">
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="${driverClassName}"
+			connectionURL="${url}" userId="${connctName}" password="${password}" />
+		<!-- java类型处理器 用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl； 注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 
+			NUMERIC数据类型； -->
+		<javaTypeResolver
+			type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<!-- true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型 false：默认, scale>0;length>18：使用BigDecimal; 
+				scale=0;length[10,18]：使用Long； scale=0;length[5,9]：使用Integer； scale=0;length<5：使用Short； -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 1.生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="${packageName}.api.po"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="false" />
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 2.生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="${packageName}.impl.mapper"
+			targetProject="${project}">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- 3.生成DAO的包名和位置 -->
+		<javaClientGenerator targetPackage="${packageName}.impl.mapper"
+			targetProject="${project}" type="XMLMAPPER">
+			<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 要生成哪些表 -->
+		<table tableName="${tableName}" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<!-- schema即为数据库名 **tableName为对应的数据库表 domainObjectName是要生成的实体类** enable*ByExample 
+				是否生成 example类 -->
+			<!-- 忽略列，不生成bean 字段 -->
+			<!-- <ignoreColumn column="FRED" /> -->
+			<!-- 指定 -->
+			<!-- <columnOverride column="???" property="???" /> -->
+		</table>
+	</context>
+</generatorConfiguration>

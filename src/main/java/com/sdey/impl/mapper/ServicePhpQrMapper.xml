@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.ServicePhpQrMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.ServicePhpQr">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="hospitalid" jdbcType="VARCHAR" property="hospitalid" />
+		<result column="officeid" jdbcType="VARCHAR" property="officeid" />
+		<result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, hospitalid, officeid, qr_code, state
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from service_php_qr
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from service_php_qr
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.ServicePhpQr">
+		<!-- @mbg.generated -->
+		insert into service_php_qr (id, hospitalid, officeid,
+		qr_code, state)
+		values (#{id,jdbcType=INTEGER}, #{hospitalid,jdbcType=VARCHAR},
+		#{officeid,jdbcType=VARCHAR},
+		#{qrCode,jdbcType=VARCHAR},
+		#{state,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.ServicePhpQr">
+		<!-- @mbg.generated -->
+		insert into service_php_qr
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="hospitalid != null">
+				hospitalid,
+			</if>
+			<if test="officeid != null">
+				officeid,
+			</if>
+			<if test="qrCode != null">
+				qr_code,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=VARCHAR},
+			</if>
+			<if test="officeid != null">
+				#{officeid,jdbcType=VARCHAR},
+			</if>
+			<if test="qrCode != null">
+				#{qrCode,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.ServicePhpQr">
+		<!-- @mbg.generated -->
+		update service_php_qr
+		<set>
+			<if test="hospitalid != null">
+				hospitalid = #{hospitalid,jdbcType=VARCHAR},
+			</if>
+			<if test="officeid != null">
+				officeid = #{officeid,jdbcType=VARCHAR},
+			</if>
+			<if test="qrCode != null">
+				qr_code = #{qrCode,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.ServicePhpQr">
+		<!-- @mbg.generated -->
+		update service_php_qr
+		set hospitalid = #{hospitalid,jdbcType=VARCHAR},
+		officeid = #{officeid,jdbcType=VARCHAR},
+		qr_code =
+		#{qrCode,jdbcType=VARCHAR},
+		state = #{state,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getKSEWM" parameterType="com.sdey.api.po.ServicePhpQr"
+		resultType="java.lang.String">
+		select qr_code from service_php_qr where hospitalid =
+		#{hospitalid,jdbcType=VARCHAR} and officeid =
+		#{officeid,jdbcType=VARCHAR} and state=2
+	</select>
+	<select id="getHospitalEWM" resultType="java.lang.String">
+		select qr_code from
+		service_php_qr where hospitalid =
+		#{hospitalid,jdbcType=VARCHAR} and
+		state=1
+	</select>
+</mapper>

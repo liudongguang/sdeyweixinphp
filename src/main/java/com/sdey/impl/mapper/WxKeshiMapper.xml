@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxKeshiMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxKeshi">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="photo" jdbcType="VARCHAR" property="photo" />
+		<result column="xq" jdbcType="VARCHAR" property="xq" />
+		<result column="hospitalid" jdbcType="INTEGER" property="hospitalid" />
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="czyid" jdbcType="INTEGER" property="czyid" />
+		<result column="wxkserweima" jdbcType="VARCHAR" property="wxkserweima" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, name, photo, xq, hospitalid, pinyin, createtime, czyid,
+		wxkserweima
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_keshi
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_keshi
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByHospitalID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_keshi
+		where hospitalid = #{hospitalid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxKeshi">
+		<!-- @mbg.generated -->
+		insert into wx_keshi (id, name, photo,
+		xq, hospitalid, pinyin,
+		createtime, czyid, wxkserweima
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{photo,jdbcType=VARCHAR},
+		#{xq,jdbcType=VARCHAR}, #{hospitalid,jdbcType=INTEGER},
+		#{pinyin,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{czyid,jdbcType=INTEGER},
+		#{wxkserweima,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxKeshi">
+		<!-- @mbg.generated -->
+		insert into wx_keshi
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="xq != null">
+				xq,
+			</if>
+			<if test="hospitalid != null">
+				hospitalid,
+			</if>
+			<if test="pinyin != null">
+				pinyin,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="czyid != null">
+				czyid,
+			</if>
+			<if test="wxkserweima != null">
+				wxkserweima,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="xq != null">
+				#{xq,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				#{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				#{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="wxkserweima != null">
+				#{wxkserweima,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxKeshi">
+		<!-- @mbg.generated -->
+		update wx_keshi
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="xq != null">
+				xq = #{xq,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				hospitalid = #{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				pinyin = #{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				czyid = #{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="wxkserweima != null">
+				wxkserweima = #{wxkserweima,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxKeshi">
+		<!-- @mbg.generated -->
+		update wx_keshi
+		set name = #{name,jdbcType=VARCHAR},
+		photo =
+		#{photo,jdbcType=VARCHAR},
+		xq = #{xq,jdbcType=VARCHAR},
+		hospitalid =
+		#{hospitalid,jdbcType=INTEGER},
+		pinyin = #{pinyin,jdbcType=VARCHAR},
+		createtime = #{createtime,jdbcType=TIMESTAMP},
+		czyid =
+		#{czyid,jdbcType=INTEGER},
+		wxkserweima =
+		#{wxkserweima,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getKeshiList" parameterType="com.sdey.api.po.WxManager"
+		resultMap="BaseResultMap">
+		select
+		id, name, hospitalid, pinyin, createtime
+		from wx_keshi where hospitalid=#{hospitalid,jdbcType=INTEGER} order by
+		createtime desc
+	</select>
+	<select id="getKSEWM" resultType="java.lang.String">
+		select wxkserweima from
+		wx_keshi where hospitalid =
+		#{hospitalid,jdbcType=INTEGER} and id =
+		#{ksofficeid,jdbcType=INTEGER}
+	</select>
+	<update id="saveKSEWM">
+		update wx_keshi
+		set wxkserweima = #{getEWMByTicketUrl,jdbcType=VARCHAR} where
+		hospitalid =
+		#{hospitalid,jdbcType=INTEGER} and id =
+		#{ksofficeid,jdbcType=INTEGER}
+	</update>
+</mapper>

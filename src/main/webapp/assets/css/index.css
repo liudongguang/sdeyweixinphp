@@ -1,0 +1,104 @@
+body {
+	font-size: 12px;
+}
+
+.ldgMainTitle {
+	width: 250px;
+	height: 20;
+	position: absolute;
+	top: 7
+}
+
+table {
+	font-size: 12px
+}
+
+.top70 {
+	margin-top: 70px;
+}
+
+.marginBottom3 {
+	margin-bottom: 3px;
+}
+
+.marginBottom10 {
+	margin-bottom: 10px;
+}
+
+.aa {
+	position: absolute;
+	-webkit-transition: font-size 0.25s ease-out 0s;
+	-moz-transition: font-size 0.25s ease-out 0s;
+	transition: font-size 0.25s ease-out 0s;
+}
+
+.aa:hover {
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.right75 {
+	right: 75px
+}
+
+.right65 {
+	right: 65px
+}
+
+.ldg_tableA {
+	left: 35px;
+}
+
+.ldg_table3 {
+	left: 80px;
+}
+
+.ldg_table_btdiv {
+	position: absolute;
+	width: 120px;
+}
+
+.addbutton {
+	margin: 10px;
+	float: right;
+}
+
+.containtH800 {
+	height: 800px;
+}
+
+.padding20 {
+	padding: 20px;
+}
+
+.input-error {
+	border-color: red;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
+		rgba(102, 175, 233, 0.6);
+	outline: 0 none;
+}
+
+.floatRight {
+	float: right;
+}
+
+.font14 {
+	font-size: 14px;
+}
+
+.marginLeft20 {
+	margin-left: 20px
+}
+
+.mytext1 {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+}
+
+.ldgtext2 {
+	margin-left: 23px;
+}
+.paddingTop45 {
+	padding-top: 45px;
+}

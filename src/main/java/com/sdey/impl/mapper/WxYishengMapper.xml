@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxYishengMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxYisheng">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="zhicheng" jdbcType="VARCHAR" property="zhicheng" />
+		<result column="zhiwu" jdbcType="VARCHAR" property="zhiwu" />
+		<result column="ssksid" jdbcType="INTEGER" property="ssksid" />
+		<result column="headimg" jdbcType="VARCHAR" property="headimg" />
+		<result column="shjz" jdbcType="VARCHAR" property="shjz" />
+		<result column="zysc" jdbcType="VARCHAR" property="zysc" />
+		<result column="xxnr" jdbcType="VARCHAR" property="xxnr" />
+		<result column="hospitalid" jdbcType="INTEGER" property="hospitalid" />
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+		<result column="czyid" jdbcType="INTEGER" property="czyid" />
+		<result column="gonghao" jdbcType="VARCHAR" property="gonghao" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, name, zhicheng, zhiwu, ssksid, headimg, shjz, zysc, xxnr,
+		hospitalid, pinyin,
+		createtime, czyid, gonghao
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_yisheng
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_yisheng
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByHospitalID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_yisheng
+		where hospitalid = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByKSID" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_yisheng
+		where ssksid = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxYisheng">
+		<!-- @mbg.generated -->
+		insert into wx_yisheng (id, name, zhicheng,
+		zhiwu, ssksid, headimg,
+		shjz, zysc, xxnr, hospitalid,
+		pinyin, createtime, czyid,
+		gonghao)
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{zhicheng,jdbcType=VARCHAR},
+		#{zhiwu,jdbcType=VARCHAR},
+		#{ssksid,jdbcType=INTEGER}, #{headimg,jdbcType=VARCHAR},
+		#{shjz,jdbcType=VARCHAR}, #{zysc,jdbcType=VARCHAR},
+		#{xxnr,jdbcType=VARCHAR}, #{hospitalid,jdbcType=INTEGER},
+		#{pinyin,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+		#{czyid,jdbcType=INTEGER},
+		#{gonghao,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxYisheng">
+		<!-- @mbg.generated -->
+		insert into wx_yisheng
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="zhicheng != null">
+				zhicheng,
+			</if>
+			<if test="zhiwu != null">
+				zhiwu,
+			</if>
+			<if test="ssksid != null">
+				ssksid,
+			</if>
+			<if test="headimg != null">
+				headimg,
+			</if>
+			<if test="shjz != null">
+				shjz,
+			</if>
+			<if test="zysc != null">
+				zysc,
+			</if>
+			<if test="xxnr != null">
+				xxnr,
+			</if>
+			<if test="hospitalid != null">
+				hospitalid,
+			</if>
+			<if test="pinyin != null">
+				pinyin,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="czyid != null">
+				czyid,
+			</if>
+			<if test="gonghao != null">
+				gonghao,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="zhicheng != null">
+				#{zhicheng,jdbcType=VARCHAR},
+			</if>
+			<if test="zhiwu != null">
+				#{zhiwu,jdbcType=VARCHAR},
+			</if>
+			<if test="ssksid != null">
+				#{ssksid,jdbcType=INTEGER},
+			</if>
+			<if test="headimg != null">
+				#{headimg,jdbcType=VARCHAR},
+			</if>
+			<if test="shjz != null">
+				#{shjz,jdbcType=VARCHAR},
+			</if>
+			<if test="zysc != null">
+				#{zysc,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				#{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				#{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				#{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="gonghao != null">
+				#{gonghao,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxYisheng">
+		<!-- @mbg.generated -->
+		update wx_yisheng
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="zhicheng != null">
+				zhicheng = #{zhicheng,jdbcType=VARCHAR},
+			</if>
+			<if test="zhiwu != null">
+				zhiwu = #{zhiwu,jdbcType=VARCHAR},
+			</if>
+			<if test="ssksid != null">
+				ssksid = #{ssksid,jdbcType=INTEGER},
+			</if>
+			<if test="headimg != null">
+				headimg = #{headimg,jdbcType=VARCHAR},
+			</if>
+			<if test="shjz != null">
+				shjz = #{shjz,jdbcType=VARCHAR},
+			</if>
+			<if test="zysc != null">
+				zysc = #{zysc,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				xxnr = #{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				hospitalid = #{hospitalid,jdbcType=INTEGER},
+			</if>
+			<if test="pinyin != null">
+				pinyin = #{pinyin,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="czyid != null">
+				czyid = #{czyid,jdbcType=INTEGER},
+			</if>
+			<if test="gonghao != null">
+				gonghao = #{gonghao,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxYisheng">
+		<!-- @mbg.generated -->
+		update wx_yisheng
+		set name = #{name,jdbcType=VARCHAR},
+		zhicheng =
+		#{zhicheng,jdbcType=VARCHAR},
+		zhiwu = #{zhiwu,jdbcType=VARCHAR},
+		ssksid
+		= #{ssksid,jdbcType=INTEGER},
+		headimg = #{headimg,jdbcType=VARCHAR},
+		shjz = #{shjz,jdbcType=VARCHAR},
+		zysc = #{zysc,jdbcType=VARCHAR},
+		xxnr =
+		#{xxnr,jdbcType=VARCHAR},
+		hospitalid = #{hospitalid,jdbcType=INTEGER},
+		pinyin = #{pinyin,jdbcType=VARCHAR},
+		createtime =
+		#{createtime,jdbcType=TIMESTAMP},
+		czyid = #{czyid,jdbcType=INTEGER},
+		gonghao = #{gonghao,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getDoctorList" parameterType="com.sdey.api.po.WxManager"
+		resultMap="BaseResultMap">
+		select
+		id,name,gonghao,createtime
+		from
+		wx_yisheng where ssksid
+		=
+		#{ksofficeid,jdbcType=INTEGER} and hospitalid =
+		#{hospitalid,jdbcType=INTEGER} order by
+		createtime desc
+	</select>
+	<resultMap type="com.sdey.api.vo.Yisheng_HospitalManger" id="hospitalManagerDaoctorMap">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="ysname" />
+		<result column="ksname" jdbcType="VARCHAR" property="ksname" />
+		<result column="gonghao" jdbcType="VARCHAR" property="gonghao" />
+		<result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+	</resultMap>
+	<select id="getDoctorListForHospitalManager" parameterType="com.sdey.api.po.WxManager"
+		resultMap="hospitalManagerDaoctorMap">
+		select
+		ys.id,ys.name,ys.gonghao,ys.createtime,ks.name as
+		ksname
+		from
+		sdeyweixin.wx_yisheng ys,sdeyweixin.wx_keshi ks where
+		ys.ssksid=ks.id
+		and ys.hospitalid =
+		#{hospitalid,jdbcType=INTEGER} order
+		by
+		createtime desc
+	</select>
+
+	<select id="getYSListByksid" resultMap="BaseResultMap">
+		select
+		id,name,zhicheng,zysc,pinyin,headimg from wx_yisheng where
+		ssksid=#{ssksid,jdbcType=INTEGER}
+	</select>
+	<resultMap type="com.sdey.api.vo.Wx_ysxq" id="wxbsMap">
+		<result column="ysname" jdbcType="VARCHAR" property="name" />
+		<result column="yszhicheng" jdbcType="VARCHAR" property="zhicheng" />
+		<result column="hosname" jdbcType="VARCHAR" property="hospitalName" />
+		<result column="ksname" jdbcType="VARCHAR" property="keshiName" />
+
+		<result column="ysshjz" jdbcType="VARCHAR" property="shjz" />
+		<result column="ysxxnr" jdbcType="VARCHAR" property="xxnr" />
+		<result column="yszysc" jdbcType="VARCHAR" property="zysc" />
+		<result column="ysheadimg" jdbcType="VARCHAR" property="headimg" />
+	</resultMap>
+	<select id="selectysxqByYSID" resultMap="wxbsMap">
+		select ys.name as
+		ysname,ys.zhicheng as yszhicheng,ys.shjz as ysshjz,ys.zysc
+		as
+		yszysc,ys.xxnr as ysxxnr,ks.name as ksname,hos.name as hosname,ys.headimg as ysheadimg from
+		sdeyweixin.wx_yisheng ys
+		left join sdeyweixin.wx_keshi ks on
+		ys.ssksid=ks.id
+		left join sdeyweixin.wx_hospital hos on
+		ys.hospitalid=hos.id where
+		ys.id=#{ysid,jdbcType=INTEGER}
+	</select>
+</mapper>

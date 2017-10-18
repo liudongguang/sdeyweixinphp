@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdey.impl.mapper.WxSucaiMapper">
+	<resultMap id="BaseResultMap" type="com.sdey.api.po.WxSucai">
+		<!-- @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="imgpath" jdbcType="VARCHAR" property="imgpath" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="jianjie" jdbcType="VARCHAR" property="jianjie" />
+		<result column="linkurl" jdbcType="VARCHAR" property="linkurl" />
+		<result column="createdata" jdbcType="TIMESTAMP" property="createdata" />
+		<result column="menukey" jdbcType="VARCHAR" property="menukey" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		<!-- @mbg.generated -->
+		id, imgpath, title, jianjie, linkurl, createdata, menukey
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		<!-- @mbg.generated -->
+		select
+		<include refid="Base_Column_List" />
+		from wx_sucai
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		<!-- @mbg.generated -->
+		delete from wx_sucai
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sdey.api.po.WxSucai">
+		<!-- @mbg.generated -->
+		insert into wx_sucai (id, imgpath, title,
+		jianjie, linkurl, createdata,
+		menukey)
+		values (#{id,jdbcType=INTEGER}, #{imgpath,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{jianjie,jdbcType=VARCHAR},
+		#{linkurl,jdbcType=VARCHAR}, #{createdata,jdbcType=TIMESTAMP},
+		#{menukey,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdey.api.po.WxSucai">
+		<!-- @mbg.generated -->
+		insert into wx_sucai
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="imgpath != null">
+				imgpath,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="jianjie != null">
+				jianjie,
+			</if>
+			<if test="linkurl != null">
+				linkurl,
+			</if>
+			<if test="createdata != null">
+				createdata,
+			</if>
+			<if test="menukey != null">
+				menukey,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="imgpath != null">
+				#{imgpath,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jianjie != null">
+				#{jianjie,jdbcType=VARCHAR},
+			</if>
+			<if test="linkurl != null">
+				#{linkurl,jdbcType=VARCHAR},
+			</if>
+			<if test="createdata != null">
+				#{createdata,jdbcType=TIMESTAMP},
+			</if>
+			<if test="menukey != null">
+				#{menukey,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sdey.api.po.WxSucai">
+		<!-- @mbg.generated -->
+		update wx_sucai
+		<set>
+			<if test="imgpath != null">
+				imgpath = #{imgpath,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jianjie != null">
+				jianjie = #{jianjie,jdbcType=VARCHAR},
+			</if>
+			<if test="linkurl != null">
+				linkurl = #{linkurl,jdbcType=VARCHAR},
+			</if>
+			<if test="createdata != null">
+				createdata = #{createdata,jdbcType=TIMESTAMP},
+			</if>
+			<if test="menukey != null">
+				menukey = #{menukey,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sdey.api.po.WxSucai">
+		<!-- @mbg.generated -->
+		update wx_sucai
+		set imgpath = #{imgpath,jdbcType=VARCHAR},
+		title =
+		#{title,jdbcType=VARCHAR},
+		jianjie = #{jianjie,jdbcType=VARCHAR},
+		linkurl = #{linkurl,jdbcType=VARCHAR},
+		createdata =
+		#{createdata,jdbcType=TIMESTAMP},
+		menukey = #{menukey,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getSuCaiList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_sucai order by createdata desc
+	</select>
+	<update id="guanlianSCByID">
+		update wx_sucai set menukey =
+		#{cdid,jdbcType=VARCHAR} where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<update id="clearGuanLian">
+		update wx_sucai set menukey = null
+		where menukey =
+		#{cdid,jdbcType=VARCHAR}
+	</update>
+	<select id="getAllCaidan" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wx_sucai where menukey is not null
+	</select>
+</mapper>
